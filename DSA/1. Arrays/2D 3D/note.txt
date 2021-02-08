@@ -1,0 +1,8 @@
+A double pointer cannot be used as a 2D array. Therefore, it is wrong to declare: ‘int **mat’ and then
+use ‘mat’ as a 2D array. These are two very different data types used to access different locations in memory.
+So running such a code may abort the program with a ‘memory access violation’ error.
+A 2D array is not equivalent to a double pointer. A ‘pointer to pointer of T’ cannot serve as a ‘2D array of T’.
+The 2D array is equivalent to a pointer to row of T, and this is very different from pointer to pointer of T.
+When a double pointer that points to the first element of an array is used with the subscript notation ptr[0][0],
+it is fully dereferenced two times and the resulting object will have an address equal to the value of the first
+element of the array
