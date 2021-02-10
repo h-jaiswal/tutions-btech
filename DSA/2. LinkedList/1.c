@@ -107,11 +107,13 @@ struct node* create_ll(struct node *start)
         else
         {
             ptr=start;
-            while( ptr->next!=NULL ){
+            while( ptr->next != NULL ){
                         ptr=ptr->next;
                     }
+
             ptr->next = new_node;
-            new_node->next=NULL;
+
+            new_node->next = NULL;
         }
         printf("\n Enter the data : ");
         scanf("%d", &num);
