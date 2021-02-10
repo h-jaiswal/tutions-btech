@@ -124,14 +124,22 @@ struct node* create_ll(struct node *start)
 
 struct node *display(struct node *start)
 {
-    struct node *ptr;
-    ptr = start;
-    while(ptr != NULL)
+    if (start != NULL)
     {
-        printf("\t %d", ptr -> data);       // Read, Print, Manipulation of linked list Node data
+        struct node *ptr;
+        ptr = start;
+        while(ptr != NULL)
+        {
+            printf("\t %d", ptr -> data);       // Read, Print, Manipulation of linked list Node data
 
-        ptr = ptr -> next;
+            ptr = ptr -> next;
+        }
     }
+    else
+    {
+        printf("\n\tEmpty S.L.L\n");
+    }
+    
     return start;
 }
 
@@ -291,9 +299,6 @@ struct node *delete_after(struct node *start)
 
 struct node *delete_list(struct node *start)
 {
-// 	  // dgdfgafffffffffffffffff Lines 252-254 were modified from original code to fix
-// unresposiveness in ffffffffffffff   output window
-
 
     struct node *ptr;
     if(start!=NULL)
@@ -301,7 +306,6 @@ struct node *delete_list(struct node *start)
         ptr=start;
         while(ptr != NULL)
         {
-            printf("\n %d is to be deleted next", ptr -> data);
             start = delete_beg(ptr);
             ptr = start;
         }

@@ -100,16 +100,22 @@ struct node *create_cll(struct node *start)
 }
 struct node *display(struct node *start)
 {
-    struct node *ptr;
-    ptr = start;
-    while(ptr -> next != start)
+    if( start != NULL)
     {
-        printf("\t %d", ptr -> data);
+        struct node *ptr;
+        ptr = start;
+        while(ptr -> next != start)
+        {
+            printf("\t %d", ptr -> data);
 
-        ptr = ptr -> next;
+            ptr = ptr -> next;
+        }
+        printf("\t %d", ptr -> data);
     }
-    printf("\t %d", ptr -> data);
-    return start;
+    else{
+        printf("\n\tEmpty C. L. L.\n");
+    }
+        return start;
 }
 struct node *insert_beg(struct node *start)
 {
@@ -195,6 +201,7 @@ ptr = start;
 while(ptr -> next != start)
  start = delete_end(start);
 free(start);
+start = NULL; // Since list is now completly deleted, start = NULL
 return start;
 }
 // Output

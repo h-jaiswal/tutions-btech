@@ -116,13 +116,20 @@ struct node *create_ll(struct node *start)
 }
 struct node *display(struct node *start)
 {
-    struct node *ptr;
-    ptr=start;
-
-    while(ptr!=NULL)
+    if(start != NULL)
     {
-        printf("\t %d", ptr -> data);
-        ptr = ptr -> next;
+        struct node *ptr;
+        ptr=start;
+
+        while(ptr!=NULL)
+        {
+            printf("\t %d", ptr -> data);
+            ptr = ptr -> next;
+        }
+    }
+    else
+    {
+        printf("\n\tEmpty D. L. L.\n");
     }
 
     return start;
@@ -202,9 +209,11 @@ struct node *delete_beg(struct node *start)
     struct node *ptr;
 
     ptr = start;
+
     start = start -> next;
 
-    start -> prev = NULL;
+    if( start != NULL)
+        start -> prev = NULL;
 
     free(ptr);
 
@@ -279,16 +288,9 @@ struct node *delete_list(struct node *start)
 {
     while(start != NULL)
     {
-        struct node *ptr;
-        ptr = start;
-
-        start = start -> next;
-        start -> prev = NULL;
-        free(ptr);
-
-        start = ptr;
+        start = delete_beg( start );
     }
-
+    
     return start;
 }
 
