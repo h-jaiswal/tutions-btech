@@ -2,13 +2,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
 #define MAX 3 // Altering this value changes size of stack created
-int st[MAX], top=-1;
+
+int st[MAX], top=-1;  // STACK using arrays. top is the most recent (aka last one) insertion, here it stores the index of most recent element inserted.
+
 void push(int st[], int val);
 int pop(int st[]);
 int peek(int st[]);
-void display(int st[]);
+void display(int st[], int top);
 int main(int argc, char *argv[]) {
 int val, option;
 do
@@ -39,7 +40,7 @@ if(val != -1)
  printf("\n The value stored at top of stack is: %d", val);
 break;
 case 4:
-display(st);
+display(st, top);
 break;
  }
 }while(option != 5);
@@ -47,50 +48,62 @@ return 0;
 }
 void push(int st[], int val)
 {
-if(top == MAX-1)
-{
-printf("\n STACK OVERFLOW");
+    if(top == MAX-1)
+    {
+        printf("\n STACK OVERFLOW");
+        return;
+    }
+    else
+    {
+        top++;
+        st[top] = val;
+    }
 }
-else
-{
-top++;
-st[top] = val;
-}
-}
+
 int pop(int st[])
 {
-int val;
-if(top == -1)
-{
-printf("\n STACK UNDERFLOW");
-return -1;
+
+    int val;
+    if(top == -1)
+    {
+        printf("\n STACK UNDERFLOW");
+        return -1;  
+    }
+
+    else
+    {
+        val = st[top]; // saving original value at the top
+        top--; // updating top
+        return val; // returning Original value at the top
+    }
 }
-else
+
+void display(int st[], int top)
 {
-val = st[top];
-top--;
-return val;
-}
-}
-void display(int st[])
-{
-int i;
-if(top == -1)
-printf("\n STACK IS EMPTY");
-else
-{
-for(i=top;i>=0;i--)
-printf("\n %d",st[i]);
-printf("\n"); // Added for formatting purposes
-}
+    // Display OR Traversal;
+
+    int i;
+    if(top == -1)
+        printf("\n STACK IS EMPTY");
+    else
+    {
+        for(i = top; i >= 0 ; i--)
+        {
+            printf("\n %d",st[i]);
+        }
+        printf("\n"); // Added for formatting purposes
+    }
 }
 int peek(int st[])
 {
-if(top == -1)
-{
-printf("\n STACK IS EMPTY");
-return -1;
-}
-else
-return (st[top]);
+    // Peek returns the value at top and DOES'T CHANGE THE STACK!
+    if(top == -1)
+    {
+        printf("\n STACK IS EMPTY");
+        return -1;
+    }
+    else
+    {
+        return (st[top]);
+    }
 }

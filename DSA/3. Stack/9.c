@@ -1,4 +1,4 @@
-// Write a program to implement multiple stacks.
+// Write a program to implement multiple stacks in the same array.
 
 
 // While implementing a stack using an array, we had seen that the size of the array must be known in
